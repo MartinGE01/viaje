@@ -1,0 +1,595 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Título de Bienvenida -->
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/fuente1"
+            android:layout_gravity="center" />
+
+        <!-- Imagen de perfil -->
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:src="@drawable/icono"
+            android:layout_marginTop="-40dp" />
+
+        <!-- Cuadro de Búsqueda y Botón -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Lugares, lagunas, Ruinas"
+                android:padding="8dp"
+                />
+
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/boton_personalizado"
+                android:text="Buscar"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- Imagen Principal con Bordes Redondeados -->
+        <ImageView
+            android:id="@+id/mainImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avion"
+            android:background="@drawable/rounded_corners"
+            android:clipToOutline="true" />
+
+        <!-- Botones de Categoría -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Botón Lugares -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_button"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp">
+
+                <ImageButton
+                    android:id="@+id/placesIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Lugares"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/carro" />
+
+                <TextView
+                    android:id="@+id/placesText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Lugares"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:paddingStart="8dp" />
+            </LinearLayout>
+
+            <!-- Botón Hotel -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_button"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp">
+
+                <ImageButton
+                    android:id="@+id/hotelIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Hotel"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/hotelicono" />
+
+                <TextView
+                    android:id="@+id/hotelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Hotel"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:paddingStart="8dp" />
+            </LinearLayout>
+
+            <!-- Botón Restaurante -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_button"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/restaurantIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Restaurante"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/cuchilleria" />
+
+                <TextView
+                    android:id="@+id/restaurantText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Restaurante"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:paddingStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Sección de Recomendaciones con "Ver más" alineado a la derecha -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/recommendationsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recomendaciones"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/viewMoreRecommendations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver más"
+                android:textSize="16sp"
+                android:textColor="#0000FF"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingEnd="8dp" />
+        </RelativeLayout>
+
+        <!-- Scroll Horizontal para Recomendaciones -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <!-- Recomendación 1 -->
+                <LinearLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    android:padding="8dp"
+                    android:layout_marginEnd="16dp">
+
+                    <!-- Imagen -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/belladurmiente"
+                        android:background="@drawable/rounded_corners"
+                        android:clipToOutline="true" />
+
+                    <!-- Título -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bella durmiente"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- Ubicación -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp">
+
+                        <!-- Icono de ubicación -->
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/mapa" />
+
+                        <!-- Texto de ubicación -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tingo Maria-Huanuco"
+                            android:textSize="14sp"
+                            android:textColor="#000000"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+
+                    <!-- Precio -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="s/.90.00 / persona"
+                        android:textSize="14sp"
+                        android:textColor="#0000FF"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <!-- Recomendación 2 -->
+                <LinearLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/recommendation_background"
+                    android:padding="8dp"
+                    android:layout_marginEnd="16dp">
+
+                    <!-- Imagen -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/puentecalicanto"
+                        android:background="@drawable/rounded_corners"
+                        android:clipToOutline="true" />
+
+                    <!-- Título -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Puente calicanto"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- Ubicación -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp">
+
+                        <!-- Icono de ubicación -->
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/mapa" />
+
+                        <!-- Texto de ubicación -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Huanuco"
+                            android:textSize="14sp"
+                            android:textColor="#000000"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+
+                    <!-- Precio -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="s/.50.00 / persona"
+                        android:textSize="14sp"
+                        android:textColor="#0000FF"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Sección de Destinos Populares -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/popularDestinationsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Destinos populares"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/viewMoreDestinations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver más"
+                android:textSize="16sp"
+                android:textColor="#0000FF"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingEnd="8dp" />
+        </RelativeLayout>
+
+        <!-- Lista de Destinos Populares -->
+        <LinearLayout
+            android:id="@+id/popularDestinationsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- Destino 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="@drawable/destination_background"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/corona" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Corona del Inca"
+                        android:textSize="18sp"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Huanuco"
+                        android:textSize="14sp"
+                        android:textColor="#FF0000"
+                        android:drawableStart="@drawable/ic_location"
+                        android:drawablePadding="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="s/.70.00 / persona"
+                        android:textSize="14sp"
+                        android:textColor="#0000FF" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/travelButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/boton_personalizado"
+                    android:text="Viajar"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- Repite lo mismo para más destinos si es necesario -->
+        </LinearLayout>
+
+        <!-- Sección de Hoteles -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/hotelsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hoteles"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/viewMoreHotels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver más"
+                android:textSize="16sp"
+                android:textColor="#0000FF"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingEnd="8dp" />
+        </RelativeLayout>
+
+        <!-- Lista de Hoteles -->
+        <LinearLayout
+            android:id="@+id/hotelsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- Hotel 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="@drawable/destination_background"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/dulces" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hotel 'Dulce sueño'"
+                        android:textSize="18sp"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cajamarca"
+                        android:textSize="14sp"
+                        android:textColor="#FF0000"
+                        android:drawableStart="@drawable/ic_location"
+                        android:drawablePadding="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Precio: s/.55.00"
+                        android:textSize="14sp"
+                        android:textColor="#0000FF" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/reserveButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/boton_personalizado"
+                    android:text="Reservar"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- Repite lo mismo para más hoteles si es necesario -->
+        </LinearLayout>
+
+        <!-- Sección de Restaurantes -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/restaurantsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurantes"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/viewMoreRestaurants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver más"
+                android:textSize="16sp"
+                android:textColor="#0000FF"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingEnd="8dp" />
+        </RelativeLayout>
+
+        <!-- Lista de Restaurantes -->
+        <LinearLayout
+            android:id="@+id/restaurantsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- Restaurante 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="@drawable/destination_background"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ricoysano" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rico y sano"
+                        android:textSize="18sp"
+                        android:textColor="#000000" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/contactButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/boton_personalizado"
+                    android:text="Contactarse"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- Repite lo mismo para más restaurantes si es necesario -->
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
