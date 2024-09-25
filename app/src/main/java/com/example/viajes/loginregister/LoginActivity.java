@@ -1,58 +1,98 @@
 package com.example.viajes.loginregister;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.viajes.R;
+import com.example.viajes.inicio.HomeActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME = "login_prefs";
+    private static final String KEY_EMAIL = "user_email";
+    private static final String KEY_USERNAME = "user_name";
+
+    private DatabaseReference usersRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login); // Enlazando con el layout XML de la actividad
+        setContentView(R.layout.activity_login);
 
-        // Referencia al LottieAnimationView
-        LottieAnimationView animationView = findViewById(R.id.animationViewAdmin);
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        usersRef = FirebaseDatabase.getInstance().getReference("users");
 
-        // Referencias a los elementos de la UI
         EditText emailEditText = findViewById(R.id.emailEditText);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
         Button loginButton = findViewById(R.id.loginButton);
         TextView registerTextView = findViewById(R.id.registerTextView);
 
-        // Configurar el botón de login
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
+        loginButton.setOnClickListener(v -> {
+            String email = emailEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
 
-                if (email.isEmpty() || password.isEmpty()) {
-                    // Mostrar un mensaje si alguno de los campos está vacío
-                    Toast.makeText(LoginActivity.this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Aquí iría la lógica para verificar las credenciales, por ejemplo, una autenticación con un servidor.
-                    // Por ahora, simplemente mostramos un mensaje y navegamos a la pantalla principal
-                    Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                }
+            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                Toast.makeText(LoginActivity.this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show();
+            } else {
+                loginUser(email, password);
             }
         });
 
-        // Configurar el texto de registro para navegar a la actividad de registro
-        registerTextView.setOnClickListener(new View.OnClickListener() {
+        registerTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void loginUser(String email, String password) {
+        usersRef.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                // Navegar a la pantalla de registro
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        String dbPassword = userSnapshot.child("password").getValue(String.class);
+                        String username = userSnapshot.child("username").getValue(String.class);
+
+                        if (dbPassword != null && dbPassword.equals(password)) {
+                            // Guardar el email y el nombre en SharedPreferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(KEY_EMAIL, email);
+                            editor.putString(KEY_USERNAME, username);
+                            editor.apply();
+
+                            Toast.makeText(LoginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+
+                            // Navegar a HomeActivity
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } else {
+                    Toast.makeText(LoginActivity.this, "No se encontró ningún usuario con ese correo", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(LoginActivity.this, "Error al conectar con la base de datos", Toast.LENGTH_SHORT).show();
             }
         });
     }

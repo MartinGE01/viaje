@@ -12,12 +12,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);  // Asegúrate de que el layout sea activity_main
+        setContentView(R.layout.activity_main);
 
-        // Encuentra el botón usando su ID
+
         Button exploreButton = findViewById(R.id.exploreButton);
 
-        // Configura el evento onClick
+
         exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

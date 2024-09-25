@@ -30,6 +30,10 @@
         <activity android:name=".loginregister.LoginActivity" />
         <activity android:name=".loginregister.RegisterActivity" />
         <activity android:name=".viajes.TouristPlacesActivity" />
+        <activity android:name=".viajes.TouristPlaceDetailActivity" />
+        <activity android:name=".viajes.GenerateTripActivity" />
+        <activity android:name=".viajes.GenerateTicketActivity" />
+
     </application>
 
 </manifest>

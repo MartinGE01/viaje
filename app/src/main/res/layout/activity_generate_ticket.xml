@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <!-- Título de la actividad -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generar Ticket"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Campo de origen -->
+    <EditText
+        android:id="@+id/originEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Origen"
+        android:enabled="false"
+        android:background="@drawable/rounded_background"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Campo de destino -->
+    <EditText
+        android:id="@+id/destinationEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Destino-lugar"
+        android:enabled="false"
+        android:background="@drawable/rounded_background"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Campo de fecha (despliega DatePicker) -->
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fecha"
+        android:focusable="false"
+        android:clickable="true"
+        android:background="@drawable/rounded_background"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Campo de cantidad de personas -->
+    <EditText
+        android:id="@+id/quantityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad de personas"
+        android:inputType="number"
+        android:background="@drawable/rounded_background"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Campo de total a pagar -->
+    <EditText
+        android:id="@+id/totalEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Total a pagar"
+        android:enabled="false"
+        android:background="@drawable/rounded_background"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- CheckBox para aceptar las políticas -->
+    <CheckBox
+        android:id="@+id/policyCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceptar las políticas y las normas de la empresa"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Botón de continuar -->
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Continuar"
+        android:background="@drawable/boton_personalizado"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+</LinearLayout>

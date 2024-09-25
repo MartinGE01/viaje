@@ -1,10 +1,12 @@
 package com.example.viajes.viajes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.ImageView;
@@ -22,6 +24,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -32,8 +35,7 @@ import okhttp3.Response;
 public class TouristPlacesActivity extends AppCompatActivity {
     private static final String API_KEY = "5ae2e3f221c38a28845f05b6cf76e8fe72a969d06442d6ce528500fa";
     private static final String BASE_URL = "https://api.opentripmap.com/0.1/en/places/radius";
-    private static final int RADIUS = 50000; // 50 km to cover more area
-
+    private static final int RADIUS = 50000;
     private LinearLayout placesContainer;
     private Spinner citySpinner;
     private Map<String, double[]> cityCoordinates;
@@ -46,8 +48,8 @@ public class TouristPlacesActivity extends AppCompatActivity {
         placesContainer = findViewById(R.id.placesContainer);
         citySpinner = findViewById(R.id.citySpinner);
 
-        // Define coordinates for each department capital in Peru
         cityCoordinates = new HashMap<>();
+
         cityCoordinates.put("Amazonas - Chachapoyas", new double[]{-6.2317, -77.8690});
         cityCoordinates.put("Áncash - Huaraz", new double[]{-9.5261, -77.5281});
         cityCoordinates.put("Apurímac - Abancay", new double[]{-13.6363, -72.8814});
@@ -73,17 +75,17 @@ public class TouristPlacesActivity extends AppCompatActivity {
         cityCoordinates.put("Tumbes - Tumbes", new double[]{-3.5669, -80.4515});
         cityCoordinates.put("Ucayali - Pucallpa", new double[]{-8.3791, -74.5539});
 
-        // Set up the spinner with department names
+
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cityCoordinates.keySet().toArray(new String[0]));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citySpinner.setAdapter(adapter);
 
-        // Automatically show tourist places for the first department (Amazonas - Chachapoyas) on activity start
         citySpinner.setSelection(0);
         double[] initialCoordinates = cityCoordinates.get("Amazonas - Chachapoyas");
         getTouristPlaces(initialCoordinates[0], initialCoordinates[1], RADIUS);
 
-        // Set up the listener for department selection
         citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -94,13 +96,12 @@ public class TouristPlacesActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing
             }
         });
     }
 
     private void getTouristPlaces(double lat, double lon, int radius) {
-        placesContainer.removeAllViews(); // Clear previous results
+        placesContainer.removeAllViews();
         OkHttpClient client = new OkHttpClient();
         String url = BASE_URL + "?radius=" + radius + "&lon=" + lon + "&lat=" + lat + "&apikey=" + API_KEY;
 
@@ -174,8 +175,7 @@ public class TouristPlacesActivity extends AppCompatActivity {
         JSONObject placeObject = new JSONObject(jsonData);
         String name = placeObject.optString("name", "Unknown Place");
 
-        // Extract location/address information
-        String location = "Unknown Location"; // Default text
+        String location = "Unknown Location";
         if (placeObject.has("address")) {
             JSONObject addressObject = placeObject.getJSONObject("address");
             String city = addressObject.optString("city", "");
@@ -183,31 +183,74 @@ public class TouristPlacesActivity extends AppCompatActivity {
             location = city + ", " + state;
         }
 
-        // Extract the image URL if available
+        String description = generateRandomDescription(name, location);
+
+        // Genera un precio aleatorio como número double
+        double price = generateRandomPrice();
+
         String imageUrl = "";
         if (placeObject.has("preview")) {
             imageUrl = placeObject.getJSONObject("preview").optString("source", "");
         }
 
-        // Only proceed if the image URL is not empty
         if (!imageUrl.isEmpty()) {
-            // Create the custom view for the tourist place
             View placeView = getLayoutInflater().inflate(R.layout.item_place, placesContainer, false);
 
-            // Set the place name
             TextView placeNameTextView = placeView.findViewById(R.id.placeName);
             placeNameTextView.setText(name);
 
-            // Set the location
             TextView placeLocationTextView = placeView.findViewById(R.id.placeLocation);
             placeLocationTextView.setText(location);
 
-            // Load the image using Picasso
             ImageView placeImageView = placeView.findViewById(R.id.placeImage);
             Picasso.get().load(imageUrl).placeholder(R.drawable.placeholder_image).into(placeImageView);
 
-            // Add the view to the container
+            // Guardamos los detalles del lugar como "tag" para acceder a ellos fácilmente más tarde
+            placeView.setTag(R.id.placeName, name);
+            placeView.setTag(R.id.placeLocation, location);
+            placeView.setTag(R.id.placeImage, imageUrl);
+            placeView.setTag(R.id.placeDescription, description);
+            placeView.setTag(R.id.placePrice, price);  // Ahora el precio es double
+
+            Button travelButton = placeView.findViewById(R.id.travelButton);
+            travelButton.setOnClickListener(v -> {
+                String selectedName = (String) placeView.getTag(R.id.placeName);
+                String selectedLocation = (String) placeView.getTag(R.id.placeLocation);
+                String selectedImageUrl = (String) placeView.getTag(R.id.placeImage);
+                String selectedDescription = (String) placeView.getTag(R.id.placeDescription);
+                double selectedPrice = (double) placeView.getTag(R.id.placePrice);  // Recuperamos el precio como double
+
+                Intent intent = new Intent(TouristPlacesActivity.this, TouristPlaceDetailActivity.class);
+                intent.putExtra("image_url", selectedImageUrl);
+                intent.putExtra("name", selectedName);
+                intent.putExtra("location", selectedLocation);
+                intent.putExtra("description", selectedDescription);
+                intent.putExtra("price", selectedPrice);  // Pasamos el precio como double
+                startActivity(intent);
+            });
+
             placesContainer.addView(placeView);
         }
+    }
+
+    private String generateRandomDescription(String name, String location) {
+        String[] templates = {
+                "El lugar turístico %s en %s es conocido por su belleza y ambiente tranquilo.",
+                "Descubre %s, una joya escondida en %s con mucho que ofrecer.",
+                "%s en %s es un destino perfecto para relajarse y disfrutar de la naturaleza.",
+                "¡Visita %s en %s! Un lugar lleno de historia y cultura.",
+                "Explora %s, uno de los lugares más impresionantes de %s.",
+                "%s te sorprenderá con su encanto único en %s.",
+                "Un destino imperdible en %s es %s. ¡No te lo pierdas!"
+        };
+        Random random = new Random();
+        int index = random.nextInt(templates.length);
+        return String.format(templates[index], name, location);
+    }
+
+    // Generar precio aleatorio en formato double
+    private double generateRandomPrice() {
+        Random random = new Random();
+        return 50 + random.nextInt(451);  // Precio entre 50 y 500
     }
 }

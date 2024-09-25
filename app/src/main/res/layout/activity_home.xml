@@ -588,7 +588,6 @@
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
-            <!-- Repite lo mismo para más restaurantes si es necesario -->
         </LinearLayout>
 
     </LinearLayout>

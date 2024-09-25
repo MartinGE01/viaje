@@ -7,7 +7,7 @@
     android:background="@drawable/rounded_background"
     android:layout_marginBottom="16dp">
 
-    <!-- Image of the place -->
+
     <ImageView
         android:id="@+id/placeImage"
         android:layout_width="120dp"
@@ -60,19 +60,12 @@
         </LinearLayout>
 
         <!-- Price Text -->
-        <TextView
-            android:id="@+id/placePrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="s/.700.00 / persona"
-            android:textSize="14sp"
-            android:textColor="#0000FF" />
     </LinearLayout>
 
     <!-- Travel Button -->
     <Button
         android:id="@+id/travelButton"
-        android:layout_width="80dp"
+        android:layout_width="110dp"
         android:layout_height="40dp"
         android:background="@drawable/boton_personalizado"
         android:text="Viajar"
