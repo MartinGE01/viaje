@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Campo para el DNI -->
+        <EditText
+            android:id="@+id/dniEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DNI"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#000000" />
+
+        <!-- TextView para mostrar el nombre del hotel -->
+        <TextView
+            android:id="@+id/hotelNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Hotel"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- TextView para mostrar el lugar -->
+        <TextView
+            android:id="@+id/lugarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lugar"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Campos adicionales como entrada, salida, etc. -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/entradaEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Entrada"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#CCCCCC" />
+
+            <EditText
+                android:id="@+id/salidaEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Salida"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#CCCCCC" />
+        </LinearLayout>
+
+        <!-- Otros campos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <EditText
+                android:id="@+id/habitacionEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Habitación"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#CCCCCC" />
+
+            <EditText
+                android:id="@+id/adultosEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Adultos"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#CCCCCC" />
+
+            <EditText
+                android:id="@+id/ninosEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Niños"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#CCCCCC" />
+        </LinearLayout>
+
+        <!-- Grupo de radio para viaje de negocios u otro -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/radio_negocios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Negocios" />
+                <RadioButton
+                    android:id="@+id/radio_otro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Otro"
+                    android:layout_marginStart="16dp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- Botón para generar el ticket -->
+        <Button
+            android:id="@+id/generarTicketButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generar ticket"
+            android:backgroundTint="#0000FF"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp" />
+
+        <!-- Imagen del hotel -->
+        <ImageView
+            android:id="@+id/hotelImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

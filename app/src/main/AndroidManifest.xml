@@ -3,6 +3,9 @@
 
     <!-- Permiso para acceder a Internet -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -33,6 +36,9 @@
         <activity android:name=".viajes.TouristPlaceDetailActivity" />
         <activity android:name=".viajes.GenerateTripActivity" />
         <activity android:name=".viajes.GenerateTicketActivity" />
+        <activity android:name=".hospedaje.HotelActivity" />
+        <activity android:name=".hospedaje.HotelDetailActivity" />
+        <activity android:name=".hospedaje.TicketActivity" />
 
     </application>
 

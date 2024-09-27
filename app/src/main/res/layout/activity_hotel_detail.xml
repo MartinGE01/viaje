@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F9F9F9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:layout_margin="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/hotelImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hotel1"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/corazon"
+                android:layout_marginEnd="8dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/estrella"
+                    android:tint="#FFD700" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/estrella"
+                    android:tint="#FFD700" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/estrella"
+                    android:tint="#FFD700" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/estrella"
+                    android:tint="#FFD700" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/estrella"
+                    android:tint="#FFD700" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hotelNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="Águila Dorada Selva Hotel"
+            android:textColor="#000"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/mapa"
+                android:tint="#E53935" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pucallpa"
+                android:textSize="14sp"
+                android:layout_marginStart="4dp"
+                android:textColor="#888" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:padding="8dp"
+            android:background="@drawable/rounded_background">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/hotelicono" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Habitación"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#888" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/mapa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vista"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#888" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/cuchilleria" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Restaurante"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#888" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/descripcionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Águila Dorada Selva Hotel en Pucallpa ofrece comodidad y naturaleza, con modernas instalaciones rodeadas de la selva amazónica."
+            android:textSize="14sp"
+            android:textColor="#555555"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/precioTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="s/.90.00 / persona"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#0000FF"
+        android:layout_marginTop="8dp" />
+
+
+        <Button
+            android:id="@+id/elegirButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elegir"
+            android:backgroundTint="#0000FF"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+</ScrollView>

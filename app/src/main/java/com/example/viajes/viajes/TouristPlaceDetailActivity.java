@@ -24,7 +24,7 @@ public class TouristPlaceDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourist_place_detail);
 
-        // Referencias a los elementos del layout
+
         ImageView placeImageDetail = findViewById(R.id.placeImageDetail);
         TextView placeNameDetail = findViewById(R.id.placeNameDetail);
         TextView placeLocationDetail = findViewById(R.id.placeLocationDetail);
@@ -32,37 +32,37 @@ public class TouristPlaceDetailActivity extends AppCompatActivity {
         TextView placePrice = findViewById(R.id.placePrice);
         Button chooseButton = findViewById(R.id.chooseButton);
 
-        // Obtener los detalles del intent
+
         String imageUrl = getIntent().getStringExtra("image_url");
         String name = getIntent().getStringExtra("name");
         String location = getIntent().getStringExtra("location");
         String description = getIntent().getStringExtra("description");
         double price = getIntent().getDoubleExtra("price", 0.0);
-        
+
         placeNameDetail.setText(name);
         placeLocationDetail.setText(location);
         placeDescription.setText(description);
-        placePrice.setText(String.format("s/ %.2f", price));  // Formatear el precio como double
+        placePrice.setText(String.format("s/ %.2f", price));
 
         Picasso.get().load(imageUrl).into(placeImageDetail);
 
-        // Inicializar SharedPreferences
+
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-        // Acción del botón Elegir
+
         chooseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
                 if (isUserLoggedIn()) {
-                    // Si el usuario está logueado, ir a GenerateTicketActivity
+
                     intent = new Intent(TouristPlaceDetailActivity.this, GenerateTicketActivity.class);
                 } else {
-                    // Si no está logueado, ir a GenerateTripActivity
+
                     intent = new Intent(TouristPlaceDetailActivity.this, GenerateTripActivity.class);
                 }
 
-                // Pasar los detalles del lugar y el precio como double
+
                 intent.putExtra("image_url", imageUrl);
                 intent.putExtra("name", name);
                 intent.putExtra("location", location);
@@ -73,7 +73,7 @@ public class TouristPlaceDetailActivity extends AppCompatActivity {
         });
     }
 
-    // Método para verificar si el usuario ha iniciado sesión
+
     private boolean isUserLoggedIn() {
         String email = sharedPreferences.getString(KEY_EMAIL, null);
         return email != null;

@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String KEY_USERNAME = "user_name";
 
     private DatabaseReference usersRef;
+    private Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordEditText = findViewById(R.id.passwordEditText);
         Button loginButton = findViewById(R.id.loginButton);
         TextView registerTextView = findViewById(R.id.registerTextView);
+        logoutButton = findViewById(R.id.logoutButton);  // Nuevo botón de cierre de sesión
 
         loginButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
@@ -56,6 +58,20 @@ public class LoginActivity extends AppCompatActivity {
         registerTextView.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
+        });
+
+        // Acción del botón de cerrar sesión
+        logoutButton.setOnClickListener(v -> {
+            // Limpiar las SharedPreferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+
+            // Redirigir al LoginActivity
+            Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish(); // Cerrar la actividad actual
+            Toast.makeText(LoginActivity.this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
         });
     }
 

@@ -39,6 +39,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:23.0.0'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.google.zxing:core:3.4.1'
+    implementation 'com.itextpdf:itext7-core:7.1.15'
+
+
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'cz.msebera.android:httpclient:4.4.1.1'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'org.json:json:20210307'
+
+
+    implementation 'com.google.code.gson:gson:2.10.1'
+
 
 
     implementation libs.appcompat
