@@ -42,7 +42,7 @@ dependencies {
     implementation 'com.google.zxing:core:3.4.1'
     implementation 'com.itextpdf:itext7-core:7.1.15'
 
-
+    implementation 'com.journeyapps:zxing-android-embedded:4.2.0'
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'cz.msebera.android:httpclient:4.4.1.1'
 

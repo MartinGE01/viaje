@@ -1,3 +1,32 @@
 <resources>
+    <!-- Nombre de la aplicación -->
     <string name="app_name">Viajes</string>
+
+    <!-- Opciones de habitaciones de 300 a 310 -->
+    <string-array name="habitacion_options">
+        <item>300</item>
+        <item>301</item>
+        <item>302</item>
+        <item>303</item>
+        <item>304</item>
+        <item>305</item>
+        <item>306</item>
+        <item>307</item>
+        <item>308</item>
+        <item>309</item>
+        <item>310</item>
+    </string-array>
+
+    <!-- Opciones de adultos (1 a 3) -->
+    <string-array name="adultos_options">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!-- Opciones de niños (1 a 2) -->
+    <string-array name="ninos_options">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>
