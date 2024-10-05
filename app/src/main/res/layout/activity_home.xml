@@ -78,6 +78,7 @@
 
             <!-- Botón Lugares -->
             <LinearLayout
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -95,7 +96,7 @@
                     android:src="@drawable/carro" />
 
                 <TextView
-                    android:id="@+id/placesText"
+                    android:id="@+id/butviajar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -124,7 +125,7 @@
                     android:src="@drawable/hotelicono" />
 
                 <TextView
-                    android:id="@+id/hotelText"
+                    android:id="@+id/buthotel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -143,7 +144,7 @@
                 android:padding="8dp">
 
                 <ImageButton
-                    android:id="@+id/restaurantIcon"
+                    android:id="@+id/butrestaurante"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@android:color/transparent"
@@ -204,39 +205,43 @@
                 android:padding="8dp">
 
                 <!-- Recomendación 1 -->
+
+                <!-- Recomendación 2 -->
+
                 <LinearLayout
+                    android:id="@+id/belladurmiente"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_marginEnd="16dp"
                     android:background="@drawable/recommendation_background"
-                    android:padding="8dp"
-                    android:layout_marginEnd="16dp">
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
                     <!-- Imagen -->
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/belladurmiente"
                         android:background="@drawable/rounded_corners"
-                        android:clipToOutline="true" />
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/belladurmiente" />
 
                     <!-- Título -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="Bella durmiente"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
                         android:textColor="#000000"
-                        android:layout_marginTop="8dp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <!-- Ubicación -->
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="4dp">
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
 
                         <!-- Icono de ubicación -->
                         <ImageView
@@ -248,24 +253,24 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
                             android:text="Tingo Maria-Huanuco"
-                            android:textSize="14sp"
                             android:textColor="#000000"
-                            android:layout_marginStart="4dp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <!-- Precio -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:text="s/.90.00 / persona"
-                        android:textSize="14sp"
                         android:textColor="#0000FF"
-                        android:layout_marginTop="4dp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
-                <!-- Recomendación 2 -->
                 <LinearLayout
+                    android:id="@+id/puentecalicanto"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"

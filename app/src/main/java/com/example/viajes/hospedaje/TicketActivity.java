@@ -48,10 +48,10 @@ public class TicketActivity extends AppCompatActivity {
     private Button generarTicketButton;
     private ImageView qrImage;
 
-    // Referencia a Firebase Realtime Database
+
     private DatabaseReference databaseReference;
 
-    // Variables para el hotel y el lugar
+
     private String hotelName;
     private String lugar;
 
@@ -60,11 +60,10 @@ public class TicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
 
-        // Recibir el nombre del hotel y el lugar desde el intent
         hotelName = getIntent().getStringExtra("hotelName");
         lugar = getIntent().getStringExtra("lugar");
 
-        // Referencias a los componentes del layout
+
         dniEditText = findViewById(R.id.dniEditText);
         numeroHabitacionSpinner = findViewById(R.id.numeroHabitacionSpinner);
         adultosSpinner = findViewById(R.id.adultosSpinner);
@@ -75,10 +74,10 @@ public class TicketActivity extends AppCompatActivity {
         generarTicketButton = findViewById(R.id.generarTicketButton);
         qrImage = findViewById(R.id.qrImage);
 
-        // Configurar Firebase Realtime Database
+
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-        // Configuración de los spinners con los recursos definidos en strings.xml
+
         ArrayAdapter<CharSequence> habitacionAdapter = ArrayAdapter.createFromResource(this,
                 R.array.habitacion_options, android.R.layout.simple_spinner_item);
         habitacionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -94,22 +93,22 @@ public class TicketActivity extends AppCompatActivity {
         ninosAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ninosSpinner.setAdapter(ninosAdapter);
 
-        // Acción del botón para generar ticket o redirigir a RegisterActivity
+
         generarTicketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String dni = dniEditText.getText().toString().trim();
 
-                // Verificar si el DNI está vacío
+
                 if (dni.isEmpty()) {
                     Toast.makeText(TicketActivity.this, "Por favor, ingrese el DNI", Toast.LENGTH_SHORT).show();
                 }
-                // Validar si el DNI tiene exactamente 8 dígitos
+
                 else if (dni.length() != 8) {
                     Toast.makeText(TicketActivity.this, "El DNI debe tener 8 dígitos", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    // Validar si el DNI está registrado en Firebase
+
                     validarDNI(dni);
                 }
             }
@@ -121,7 +120,7 @@ public class TicketActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // El DNI existe en la base de datos, generar ticket
+
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         String username = snapshot.child("username").getValue(String.class);
                         String phone = snapshot.child("phone").getValue(String.class);
@@ -130,7 +129,7 @@ public class TicketActivity extends AppCompatActivity {
                         generarPDF(username, phone, dni, email);
                     }
                 } else {
-                    // El DNI no está registrado, redirigir a RegisterActivity
+
                     Toast.makeText(TicketActivity.this, "DNI no registrado, redirigiendo a registro...", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(TicketActivity.this, RegisterActivity.class);
                     startActivity(intent);
@@ -144,9 +143,9 @@ public class TicketActivity extends AppCompatActivity {
         });
     }
 
-    // Método para generar el PDF con los datos del usuario y hotel
+
     private void generarPDF(String nombre, String telefono, String dni, String correo) {
-        // Obtener los datos del hotel que el usuario ingresó
+
         String habitacion = numeroHabitacionSpinner.getSelectedItem().toString();
         String adultos = adultosSpinner.getSelectedItem().toString();
         String ninos = ninosSpinner.getSelectedItem().toString();
@@ -155,20 +154,20 @@ public class TicketActivity extends AppCompatActivity {
         RadioButton selectedViajeButton = findViewById(selectedViajeId);
         String tipoViaje = selectedViajeButton != null ? selectedViajeButton.getText().toString() : "No especificado";
 
-        // Generar el código QR
+
         Bitmap qrCodeBitmap = generarQRCode(dni);
 
-        // Crear un nuevo documento PDF
+
         PdfDocument pdfDocument = new PdfDocument();
         Paint paint = new Paint();
         Paint titlePaint = new Paint();
 
-        // Crear una página en blanco para el documento
+
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create();
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
         Canvas canvas = page.getCanvas();
 
-        // Configuración del estilo del título
+
         titlePaint.setTextSize(18);
         titlePaint.setColor(Color.BLACK);
         titlePaint.setTextAlign(Paint.Align.CENTER);
@@ -182,23 +181,23 @@ public class TicketActivity extends AppCompatActivity {
         canvas.drawText("Teléfono: " + telefono, 50, 130, paint);
         canvas.drawText("DNI: " + dni, 50, 160, paint);
         canvas.drawText("Correo: " + correo, 50, 190, paint);
-        canvas.drawText("Hotel: " + hotelName, 50, 220, paint);  // Nombre del hotel
-        canvas.drawText("Lugar: " + lugar, 50, 250, paint);      // Lugar del hotel
+        canvas.drawText("Hotel: " + hotelName, 50, 220, paint);
+        canvas.drawText("Lugar: " + lugar, 50, 250, paint);
         canvas.drawText("Habitación: " + habitacion, 50, 280, paint);
         canvas.drawText("Adultos: " + adultos, 50, 310, paint);
         canvas.drawText("Niños: " + ninos, 50, 340, paint);
         canvas.drawText("Tipo de viaje: " + tipoViaje, 50, 370, paint);
         canvas.drawText("Estado: Falta pagar", 50, 400, paint);
 
-        // Insertar el código QR en el PDF
+
         if (qrCodeBitmap != null) {
-            canvas.drawBitmap(qrCodeBitmap, 400, 100, paint); // Ajustar las coordenadas según lo necesites
+            canvas.drawBitmap(qrCodeBitmap, 400, 100, paint);
         }
 
-        // Finalizar la página y cerrar el documento
+
         pdfDocument.finishPage(page);
 
-        // Guardar el PDF en el almacenamiento privado de la aplicación
+
         File directory = getExternalFilesDir(null);
         if (directory != null && !directory.exists()) {
             directory.mkdirs();
@@ -215,15 +214,15 @@ public class TicketActivity extends AppCompatActivity {
             Toast.makeText(this, "Error al generar el PDF", Toast.LENGTH_SHORT).show();
         }
 
-        // Cerrar el documento
+
         pdfDocument.close();
     }
 
-    // Método para generar el QR Code y devolverlo como Bitmap
+
     private Bitmap generarQRCode(String dni) {
         try {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            return barcodeEncoder.encodeBitmap(dni, BarcodeFormat.QR_CODE, 200, 200); // Ajusta el tamaño del QR si es necesario
+            return barcodeEncoder.encodeBitmap(dni, BarcodeFormat.QR_CODE, 200, 200);
         } catch (WriterException e) {
             e.printStackTrace();
             return null;

@@ -41,6 +41,8 @@
         <activity android:name=".hospedaje.HotelActivity" />
         <activity android:name=".hospedaje.HotelDetailActivity" />
         <activity android:name=".hospedaje.TicketActivity" />
+        <activity android:name=".restaurante.MainRestaurante" />
+        <activity android:name=".restaurante.MostrarDireccionActivity" />
 
     </application>
 

@@ -38,7 +38,7 @@ public class HotelActivity extends AppCompatActivity {
         reservarButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirDetalleHotel("Hotel Sol de Belén Cajamarca", R.drawable.hotel3, "s/. 170.00");
+                abrirDetalleHotel("Hotel Sol de Belén ", R.drawable.hotel3, "s/. 170.00");
             }
         });
     }
